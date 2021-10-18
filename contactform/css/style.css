@@ -1,0 +1,248 @@
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,dl,dt,dd,ol,nav ul,nav li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td,article,aside,canvas,details,embed,figure,figcaption,footer,header,hgroup,menu,nav,output,ruby,section,summary,time,mark,audio,video{margin:0;padding:0;border:0;font-size:100%;font:inherit;vertical-align:baseline;}
+article, aside, details, figcaption, figure,footer, header, hgroup, menu, nav, section {display: block;}
+ol,ul{list-style:none;margin:0px;padding:0px;}
+blockquote,q{quotes:none;}
+blockquote:before,blockquote:after,q:before,q:after{content:'';content:none;}
+table{border-collapse:collapse;border-spacing:0;}
+/* start editing from here */
+a{text-decoration:none;}
+.txt-rt{text-align:right;}/* text align right */
+.txt-lt{text-align:left;}/* text align left */
+.txt-center{text-align:left;}/* text align center */
+.float-rt{float:right;}/* float right */
+.float-lt{float:left;}/* float left */
+.clear{clear:both;}/* clear float */
+.pos-relative{position:relative;}/* Position Relative */
+.pos-absolute{position:absolute;}/* Position Absolute */
+.vertical-base{	vertical-align:baseline;}/* vertical align baseline */
+.vertical-top{	vertical-align:top;}/* vertical align top */
+nav.vertical ul li{	display:block;}/* vertical menu */
+nav.horizontal ul li{	display: inline-block;}/* horizontal menu */
+img{max-width:100%;}
+/*end reset*/
+body{
+	font-family: 'Josefin Sans', sans-serif;
+	background: #71c6c1;
+}
+.header {
+    text-align: center;
+    margin-top: 4em;
+}
+.header h1 {
+    font-size: 3.5em;
+    color: #fff;
+    font-weight: 400;
+}
+.main-section {
+    width: 50%;
+    margin: 3em auto 0;
+	text-align: center;
+}
+.login-form {
+    background: #fff;
+	padding: 2em 1em;
+}
+.login-form h2 {
+    font-size: 2em;
+    text-transform: capitalize;
+	    color: #777;
+}
+.login-form p {
+    font-size: .95em;
+	color: #777;
+    line-height: 2em;
+}
+.login-form span {
+    width: 75%;
+    height: 1px;
+    display: block;
+    background: #f99104;
+    margin: 1em auto;
+}
+.login-form h4 {
+    font-size: 1.2em;
+    text-transform: capitalize;
+    margin-bottom: .2em;
+	    color: #777;
+}
+.login-form input[type="text"] {
+    padding: .8em 4em .8em 1em;
+    width: 80%;
+    margin-bottom: 1em;
+    border: 1px solid#CECCCC;
+	outline: none;
+	color: #555;
+}
+.login-form input[type="email"] {
+    padding: .8em 4em .8em 1em;
+    width: 80%;
+    margin-bottom: 1em;
+    border: 1px solid#CECCCC;
+    outline: none;
+    color: #555;
+}
+
+
+.login-form input.user {
+   background: url(../images/user.png) no-repeat 96% 55%;
+}
+.login-form input.phone{
+background: url(../images/phone.png) no-repeat 96% 55%;
+}
+.login-form input.email{
+background: url(../images/email.png) no-repeat 96% 55%;
+}
+.login-form textarea.mess{
+background: url(../images/mess.png) no-repeat 96% 5%;
+}
+.login-form input[type="text"]:hover {
+    border: 1px solid #71c6c1;
+}
+.login-form  textarea {
+    width: 80%;
+    height: 120px;
+    outline: none;
+	resize: none;
+	margin-bottom: 1em;
+	border: 1px solid #CECCCC;
+	padding: .8em 4em .8em 1em;
+	font-size: 1em;
+	color: #555;
+}
+::-webkit-input-placeholder{
+color:#C3C3C3 !important;
+    font-family: 'Josefin Sans', sans-serif;
+}
+.login-form textarea:hover {
+    border: 1px solid #71c6c1;
+}
+.login-form input[type="submit"] {
+    font-size: 1em;
+    padding: .8em 1em;
+    border: none;
+    text-transform: capitalize;
+    outline: none;
+    background: #f99104;
+    color: #fff;
+    cursor: pointer;   
+	width: 56%;
+	font-family: 'Josefin Sans', sans-serif;
+	    border-bottom: 2px solid#A26E28;
+}
+.login-form input[type="submit"]:hover {
+    background: #71C6C1;
+	border-bottom: 2px solid#59928F;
+}
+.footer {
+    text-align: center;
+    padding: 3em 0;
+}
+.footer p {
+    font-size: 1em;
+    color: #fff;
+    margin: 0px;
+}
+.footer p a {
+    color: #000;
+}
+.footer p a:hover {
+    color: #fff;
+}
+/**responsive*/
+@media(max-width:1440px){
+.main-section {
+    width: 60%;
+}
+}
+@media(max-width:1366px){
+.main-section {
+    width: 60%;
+}
+}
+@media(max-width:1280px){
+.main-section {
+    width: 60%;
+}
+}
+@media(max-width:1080px){
+.main-section {
+    width: 60%;
+}
+.header h1 {
+    font-size: 3em;
+}
+.header {
+    text-align: center;
+    margin-top: 3em;
+}
+.login-form h2 {
+    font-size: 1.8em;
+}
+.login-form h4 {
+    font-size: 1.1em;
+}
+}
+@media(max-width:991px){
+.main-section {
+    width: 60%;
+}
+}
+@media(max-width:800px){
+.main-section {
+    width: 58%;
+}
+}
+@media(max-width:768px){
+.main-section {
+    width: 60%;
+}
+}
+@media(max-width:640px){
+.main-section {
+    width: 75%;
+}
+.header h1 {
+    font-size: 2.8em;
+}
+}
+@media (max-width: 480px){
+.main-section {
+    width: 95%;
+	margin: 2em auto 0
+}
+.header {
+    text-align: center;
+    margin-top: 2em;
+}
+.login-form {
+    background: #fff;
+    padding: 1em 1em;
+}
+.footer {
+    text-align: center;
+    padding: 2em 0;
+}
+}
+@media (max-width: 320px){
+.header h1 {
+    font-size: 2.3em;
+}
+.login-form input[type="submit"] {
+   width: 67%;
+ }
+.login-form p {
+    line-height: 1.5em;
+}
+.login-form h2 {
+    font-size: 1.6em;
+}
+.login-form h4 {
+    font-size: 1em;
+}
+.login-form input[type="text"],.login-form textarea {
+   width: 73%;
+}
+.footer p {
+    font-size: .95em;
+}
+}
