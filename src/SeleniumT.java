@@ -12,7 +12,7 @@ public class SeleniumT {
 	public void closeTab() {
 		driver.close();
 	}
-	@Test
+	@Test(priority =1 )
 	public void ContactFormSubmit(){
 		System.setProperty("webdriver.chrome.driver", "D:\\STQA\\drivers\\chromedriver.exe");
 		driver = new ChromeDriver();
@@ -30,7 +30,41 @@ public class SeleniumT {
 		Assert.assertEquals(actualsubmitString,expectedSubmitString);
 		driver.close();
     }
-	@Test
+	@Test(priority =2 )
+	public void ContactFormSubmitPhoneNovalidation(){
+		System.setProperty("webdriver.chrome.driver", "D:\\STQA\\drivers\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+		driver.get("http://localhost/contactform/");
+		driver.findElement(By.className("user")).sendKeys("selenium test case");
+		driver.findElement(By.className("phone")).sendKeys("123456789");
+		driver.findElement(By.className("email")).sendKeys("SeleNium@Test.co");
+		driver.findElement(By.name("subject")).sendKeys("Test");
+		driver.findElement(By.name("message")).sendKeys("This was Test case ");
+		driver.findElement(By.name("submit")).click();
+		String expectedSubmitString = "1234567890";
+		String actualsubmitString = driver.findElement(By.className("phone")).getAttribute("value");
+		Assert.assertEquals(actualsubmitString,expectedSubmitString);
+		driver.close();
+    }
+	@Test(priority =3 )
+	public void ContactFormSubmitEmailvalidation(){
+		System.setProperty("webdriver.chrome.driver", "D:\\STQA\\drivers\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(120, TimeUnit.SECONDS);
+		driver.get("http://localhost/contactform/");
+		driver.findElement(By.className("user")).sendKeys("selenium test case");
+		driver.findElement(By.className("phone")).sendKeys("1234567890");
+		driver.findElement(By.className("email")).sendKeys("SeleNium.Test.co");
+		driver.findElement(By.name("subject")).sendKeys("Test");
+		driver.findElement(By.name("message")).sendKeys("This was Test case ");
+		driver.findElement(By.name("submit")).click();
+		String expectedSubmitString = "SeleNium@Test.co";
+		String actualsubmitString = driver.findElement(By.className("email")).getAttribute("value");
+		Assert.assertEquals(actualsubmitString,expectedSubmitString);
+		driver.close();
+    }
+	@Test(priority =4 )
 	public void AdminLogin() {
 		System.setProperty("webdriver.chrome.driver", "D:\\STQA\\drivers\\chromedriver.exe");
 		driver = new ChromeDriver();
@@ -43,7 +77,7 @@ public class SeleniumT {
 		String actualloginString = driver.getCurrentUrl();
 		Assert.assertEquals(actualloginString, expectedloginString);
 	}
-	@Test
+	@Test(priority =5 )
 	public void AdminLoginFail() {
 		System.setProperty("webdriver.chrome.driver","D:\\\\STQA\\\\drivers\\\\chromedriver.exe");
 		driver = new ChromeDriver();
@@ -56,9 +90,8 @@ public class SeleniumT {
 		String actualloginFailString = driver.getTitle();
 		Assert.assertEquals(actualloginFailString, expectedloginFailString);
 		driver.close();
-		
 	}
-	@Test
+	@Test(priority =6 )
 	public void AdminLogOut() {
 		AdminLogin();
 		driver.findElement(By.xpath("//*[@id=\"navbar-mobile\"]/ul[2]/li[1]")).click();
@@ -68,7 +101,7 @@ public class SeleniumT {
 		Assert.assertEquals(actualOutputString, expectedOutputString);
 		driver.close();
 	}
-	@Test
+	@Test(priority =7 )
 	public void UpdateEmail() {
 		AdminLogin();
 		driver.get("http://localhost/contactform/admin/update-email.php");
@@ -80,7 +113,7 @@ public class SeleniumT {
 		Assert.assertEquals(expectedupdateEmailString, actualupdateEmailString);
 		closeTab();
 		}
-	@Test
+	@Test(priority =8 )
 	public void UpdatePassword() {
 		AdminLogin();
 		driver.get("http://localhost/contactform/admin/change-password.php");
@@ -92,7 +125,7 @@ public class SeleniumT {
 		closeTab();
 		
 	}
-	@Test 
+	@Test(priority =9 )
 	public void TodayContacts() {
 		AdminLogin();
 		driver.get("http://localhost/contactform/admin/todays-contact.php");
@@ -101,30 +134,38 @@ public class SeleniumT {
 		Assert.assertEquals(actualString, expectedDetailString);
 		closeTab();
 	}
-	@Test
-	public void WeekContacts() {
+	@Test(priority =10 )
+	public void ReportBTdates() {
 		AdminLogin();
-		driver.get("http://localhost/contactform/admin/last-sevendays-contacts.php");
+		driver.get("http://localhost/contactform/admin/select-dates.php");
+		driver.findElement(By.xpath("//*[@id=\"formatter\"]/div/div/div/div[2]/div/div[1]/div/fieldset/div/input")).sendKeys("2021-11-20");
+		driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/form/section/div/div/div/div[2]/div/div[2]/div/fieldset/div/input")).sendKeys("2021-11-25");
+		driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/form/section/div/div/div/div[2]/div/div[3]/div/button")).click();
+		String expectedtextString = "Contact's Report from 2021-11-20 to 2021-11-25";
+		String actualString =driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div/div/div[2]/h4")).getText();
+		Assert.assertEquals(actualString, expectedtextString);
+		closeTab();
 	}
-	@Test
+	@Test(priority = 11)
 	public void WeekContacts1stcontact() {
-		WeekContacts();
+		AdminLogin();
+		driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div[2]/div/div/a/div/div[1]/div[1]/h6")).click();
 		driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div/div/div[2]/div/table/tbody/tr/td[5]/a/button")).click();
 		String expectedDetails1stString = "Contact Form Admin | Contact Details";
 		String actualDetail1stString = driver.getTitle();
 		Assert.assertEquals(actualDetail1stString, expectedDetails1stString);
 	}
-	@Test
+	@Test(priority = 12)
 	public void WeekContacts1stcontactReply(){
 		WeekContacts1stcontact();
-		driver.findElement(By.xpath("//*[@id=\"invoice-footer\"]/div/div/button")).click();
-		driver.findElement(By.xpath("//*[@id=\"warning\"]/div/div/div[2]/form/p/textarea")).sendKeys("Thanks For Conatacting");
-		driver.findElement(By.xpath("//*[@id=\"warning\"]/div/div/div[3]/button[2]")).click();
+		driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/section/div/div[3]/div/div/button")).click();
+		driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/section/div/div[3]/div/div/div/div/div/div[2]/form/p/textarea")).sendKeys("Thanks For Conatacting");
+		driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/section/div/div[3]/div/div/div/div/div/div[3]/button[2]")).click();
 		String expecetedResponseString = "Well done!Remark added successfully";
 		String actualResponseString = driver.findElement(By.xpath("//*[@id=\"invoice-template\"]/div[1]")).getText();
 		Assert.assertEquals(actualResponseString, expecetedResponseString);
 	}
-	@Test
+	@Test(priority =13 )
 	public void TotalContacts() {
 		AdminLogin();
 		driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div[3]/div/div/a/div")).click();
@@ -132,17 +173,30 @@ public class SeleniumT {
 		String actualTCDeatailString =driver.findElement(By.xpath("/html/body/div[3]/div/div[1]/div/h3")).getText();
 		Assert.assertEquals(actualTCDeatailString,expectedTCDetailString);
 	}
-	@Test
+	@Test(priority =14)
 	public void TotalContactsReply() {
 		AdminLogin();
-		driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div[3]/div/div/a/div")).click();
-		driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div/div/div[2]/div/table/tbody/tr[2]/td[5]/a/button")).click();
+		driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div[3]/div/div/a/div/div[1]/div[1]/h6")).click();
+		driver.findElement(By.xpath("/html/body/div[3]/div/div[2]/div/div/div/div[2]/div/table/tbody/tr[4]/td[5]/a/button")).click();
 		driver.findElement(By.xpath("//*[@id=\"invoice-footer\"]/div/div/button")).click();
 		driver.findElement(By.xpath("//*[@id=\"warning\"]/div/div/div[2]/form/p/textarea")).sendKeys("Thanks For Conatacting");
 		driver.findElement(By.xpath("//*[@id=\"warning\"]/div/div/div[3]/button[2]")).click();
 		String expectedTCRString = "Well done!Remark added successfully"; 
 		String actualTCRString = driver.findElement(By.xpath("//*[@id=\"invoice-template\"]/div[1]")).getText();
 		Assert.assertEquals(actualTCRString, expectedTCRString);
+	}
+	@Test(priority = 15)
+	public void AdminLoginEF() {
+		System.setProperty("webdriver.chrome.driver", "D:\\STQA\\drivers\\chromedriver.exe");
+		driver = new ChromeDriver();
+		driver.manage().timeouts().implicitlyWait(1200,TimeUnit.MILLISECONDS);
+		driver.get("http://localhost/contactform/admin/");
+		driver.findElement(By.id("username")).sendKeys("");
+		driver.findElement(By.id("password")).sendKeys("");
+		driver.findElement(By.name("login")).click();
+		String expectedloginString = "http://localhost/contactform/admin/dashboard.php";
+		String actualloginString = driver.getCurrentUrl();
+		Assert.assertEquals(actualloginString, expectedloginString);	
 	}
 	//public static void main(String[] args){
 		//SeleniumT obj1 = new SeleniumT();
